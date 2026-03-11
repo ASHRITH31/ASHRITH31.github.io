@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashrith Sriram Raju — Network Engineer</title>
+<meta name="description" content="Network & Cloud Infrastructure Engineer. NUS M.S. EE. OCI Certified. Submarine cable & DWDM systems exposure at Airtel CLS.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080c14;
+  --surface: #0d1422;
+  --surface2: #111927;
+  --border: #1a2640;
+  --border2: #243350;
+  --pulse: #00c8ff;
+  --pulse2: #0085aa;
+  --amber: #f59e0b;
+  --green: #10b981;
+  --text: #d4e0f0;
+  --muted: #5a7a9a;
+  --white: #eef4ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  overflow-x: hidden;
+  cursor: crosshair;
+}
+
+/* ── ANIMATED BACKGROUND ─────────────────────────────── */
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-layer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 110%, rgba(0,100,180,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 10% 20%, rgba(0,200,255,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 30% 25% at 90% 70%, rgba(0,200,255,0.03) 0%, transparent 50%);
+}
+
+/* Submarine cable lines */
+.cable {
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cable::after {
+  content: '';
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(0,200,255,0.0) 20%,
+    rgba(0,200,255,0.25) 50%,
+    rgba(0,200,255,0.0) 80%,
+    transparent 100%
+  );
+  animation: cable-pulse var(--dur, 6s) var(--delay, 0s) ease-in-out infinite;
+}
+
+.cable:nth-child(1) { top: 18%; --dur: 7s; --delay: 0s; }
+.cable:nth-child(2) { top: 42%; --dur: 9s; --delay: 2s; }
+.cable:nth-child(3) { top: 67%; --dur: 6s; --delay: 4s; }
+.cable:nth-child(4) { top: 85%; --dur: 8s; --delay: 1s; }
+
+@keyframes cable-pulse {
+  0% { opacity: 0; transform: translateX(-100%); }
+  30% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(100%); }
+}
+
+/* ── NAVIGATION ─────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(26,38,64,0.6);
+  backdrop-filter: blur(20px);
+  background: rgba(8,12,20,0.7);
+}
+
+.nav-logo {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--pulse);
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+/* ── HERO ────────────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 48px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-eyebrow {
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--pulse);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: up 0.6s 0.1s ease forwards;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--pulse);
+}
+
+.hero-name {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 0.95;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: up 0.6s 0.2s ease forwards;
+  letter-spacing: -2px;
+}
+
+.hero-name span {
+  color: var(--pulse);
+  display: block;
+}
+
+.hero-role {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: var(--muted);
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: up 0.6s 0.3s ease forwards;
+  font-style: italic;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 0;
+  margin-bottom: 56px;
+  opacity: 0;
+  animation: up 0.6s 0.4s ease forwards;
+  flex-wrap: wrap;
+}
+
+.hstat {
+  padding: 20px 36px 20px 0;
+  margin-right: 36px;
+  border-right: 1px solid var(--border2);
+}
+
+.hstat:last-child { border-right: none; }
+
+.hstat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--pulse);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.hstat-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  max-width: 120px;
+  line-height: 1.5;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  opacity: 0;
+  animation: up 0.6s 0.5s ease forwards;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--pulse);
+  border: none;
+  padding: 14px 28px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-primary:hover { background: #00e5ff; }
+
+.btn-secondary {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--pulse);
+  background: transparent;
+  border: 1px solid var(--border2);
+  padding: 14px 28px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-secondary:hover { border-color: var(--pulse); background: rgba(0,200,255,0.05); }
+
+/* ── SECTION BASE ───────────────────────────────────── */
+section {
+  position: relative;
+  z-index: 1;
+  padding: 100px 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--pulse);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.section-label::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--pulse);
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 60px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+/* ── ABOUT ──────────────────────────────────────────── */
+#about {
+  border-top: 1px solid var(--border);
+  padding-top: 100px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.about-text p {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.about-text p em {
+  color: var(--pulse);
+  font-style: italic;
+}
+
+.cert-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cert-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: border-color 0.2s;
+}
+
+.cert-item:hover { border-color: var(--border2); }
+
+.cert-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--pulse);
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(0,200,255,0.6);
+}
+
+.cert-name {
+  font-size: 11px;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.cert-issuer {
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* ── EXPERIENCE ─────────────────────────────────────── */
+#experience {
+  border-top: 1px solid var(--border);
+}
+
+.exp-item {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 48px;
+  padding: 48px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.exp-item:last-child { border-bottom: none; }
+
+.exp-meta {
+  padding-top: 4px;
+}
+
+.exp-period {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--pulse);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.exp-company {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.exp-location {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.exp-content {}
+
+.exp-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.exp-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.exp-bullets li {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+  padding-left: 18px;
+  position: relative;
+}
+
+.exp-bullets li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--pulse);
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  top: 4px;
+}
+
+.exp-bullets strong {
+  color: var(--white);
+  font-style: normal;
+}
+
+.exp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.tag {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  transition: all 0.2s;
+}
+
+.tag:hover { color: var(--pulse); border-color: var(--border2); }
+
+/* ── PROJECTS ───────────────────────────────────────── */
+#projects {
+  border-top: 1px solid var(--border);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 32px;
+  transition: border-color 0.25s, transform 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--pulse), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+
+.project-card:hover {
+  border-color: var(--border2);
+  transform: translateY(-4px);
+}
+
+.project-card:hover::before { transform: scaleX(1); }
+
+.project-tag {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--pulse);
+  margin-bottom: 14px;
+}
+
+.project-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.project-desc {
+  font-family: 'Instrument Serif', serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.project-stack span {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 3px 8px;
+}
+
+/* ── BLOG ───────────────────────────────────────────── */
+#blog {
+  border-top: 1px solid var(--border);
+}
+
+.blog-featured {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 48px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.blog-featured:hover { border-color: var(--border2); }
+
+.blog-featured::after {
+  content: '01';
+  position: absolute;
+  bottom: 24px;
+  right: 32px;
+  font-family: 'Syne', sans-serif;
+  font-size: 5rem;
+  font-weight: 800;
+  color: rgba(0,200,255,0.04);
+  line-height: 1;
+}
+
+.blog-date {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--pulse);
+  margin-bottom: 16px;
+}
+
+.blog-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.blog-excerpt {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 600px;
+}
+
+.blog-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--pulse);
+  text-decoration: none;
+  transition: gap 0.2s;
+}
+
+.blog-link:hover { gap: 14px; }
+
+.blog-soon {
+  background: var(--surface2);
+  border: 1px dashed var(--border);
+  padding: 32px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.blog-soon-text {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.blog-soon-label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--border2);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+}
+
+/* ── SKILLS ─────────────────────────────────────────── */
+#skills {
+  border-top: 1px solid var(--border);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.skill-group {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 28px;
+}
+
+.skill-group-label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--pulse);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.skill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skill-item {
+  font-size: 12px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skill-item::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--pulse);
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+/* ── CONTACT ────────────────────────────────────────── */
+#contact {
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: 100px 48px 120px;
+}
+
+.contact-availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 24px;
+}
+
+.contact-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+.contact-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -2px;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.contact-title em {
+  color: var(--pulse);
+  font-style: normal;
+}
+
+.contact-sub {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--muted);
+  margin-bottom: 48px;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ── FOOTER ─────────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-left {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--muted);
+}
+
+.footer-right {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+
+/* ── ANIMATIONS ─────────────────────────────────────── */
+@keyframes up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  #hero { padding: 100px 24px 60px; }
+  section { padding: 60px 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .exp-item { grid-template-columns: 1fr; gap: 16px; }
+  .hero-stats { gap: 0; }
+  .hstat { padding: 16px 24px 16px 0; margin-right: 24px; }
+  .blog-featured { padding: 32px 24px; }
+  footer { padding: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Background -->
+<div class="bg-layer">
+  <div class="cable"></div>
+  <div class="cable"></div>
+  <div class="cable"></div>
+  <div class="cable"></div>
+</div>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-logo">ASR // Network Engineer</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<div id="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Network & Cloud Infrastructure Engineer</div>
+    <h1 class="hero-name">
+      Ashrith<br>
+      <span>Sriram Raju</span>
+    </h1>
+    <p class="hero-role">
+      M.S. Electrical Engineering · National University of Singapore<br>
+      OCI Certified · Submarine Cable & DWDM Systems · Backbone Infrastructure
+    </p>
+    <div class="hero-stats">
+      <div class="hstat">
+        <div class="hstat-num">95%</div>
+        <div class="hstat-label">of internet traverses submarine cables</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">4×</div>
+        <div class="hstat-label">cloud & networking certifications</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">2</div>
+        <div class="hstat-label">engineering internships</div>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="Ashrith_Resume_Final.pdf" class="btn-primary" download>Download Resume</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+</div>
+
+<!-- About -->
+<section id="about">
+  <div class="section-label">About</div>
+  <h2 class="section-title">Where fascination<br>meets infrastructure.</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        I'm a final-year M.S. Electrical Engineering student at NUS Singapore,
+        graduating June 2026. My path into networking wasn't linear —
+        it started with hardware at DRDO and found its direction inside
+        <em>Airtel's Cable Landing Station in Chennai.</em>
+      </p>
+      <p>
+        Standing next to live submarine cable systems carrying
+        <em>95% of the world's intercontinental internet traffic</em>,
+        watching engineers read fault signals from cables on the ocean floor —
+        that's when networking stopped being academic and became something I
+        genuinely wanted to understand from the ground up.
+      </p>
+      <p>
+        Today I'm building that understanding — through certifications,
+        a BGP simulation lab (MiniNet-IX), and weekly writing about
+        backbone infrastructure for engineers who want to learn alongside me.
+      </p>
+    </div>
+    <div class="cert-stack reveal">
+      <div class="cert-item">
+        <div class="cert-dot"></div>
+        <div>
+          <div class="cert-name">OCI 2025 Certified Networking Professional</div>
+          <div class="cert-issuer">Oracle</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-dot"></div>
+        <div>
+          <div class="cert-name">OCI Cloud Infrastructure Foundation Associate</div>
+          <div class="cert-issuer">Oracle</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-dot"></div>
+        <div>
+          <div class="cert-name">Cisco Networking Essentials</div>
+          <div class="cert-issuer">Cisco</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-dot"></div>
+        <div>
+          <div class="cert-name">AWS Cloud Practitioner Essentials</div>
+          <div class="cert-issuer">Amazon Web Services</div>
+        </div>
+      </div>
+      <div class="cert-item" style="border-color: var(--border2); opacity: 0.6;">
+        <div class="cert-dot" style="background: var(--amber); box-shadow: 0 0 8px rgba(245,158,11,0.4);"></div>
+        <div>
+          <div class="cert-name">PCEP – Python Programmer</div>
+          <div class="cert-issuer">In progress · Python Institute</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience">
+  <div class="section-label">Experience</div>
+  <h2 class="section-title">Where I've worked.</h2>
+
+  <div class="exp-item reveal">
+    <div class="exp-meta">
+      <div class="exp-period">Jun – Jul 2025</div>
+      <div class="exp-company">Bharti Airtel</div>
+      <div class="exp-location">Cable Landing Station<br>Chennai, India</div>
+    </div>
+    <div class="exp-content">
+      <div class="exp-title">Network Operations Intern</div>
+      <ul class="exp-bullets">
+        <li>Maintained high availability of <strong>SEA-ME-WE-4 and i2i submarine systems spanning thousands of km</strong>, carrying 95% of intercontinental traffic — interpreting OTN fault signals (AIS, BDI, FDI, LOS, LOF) to isolate faults and accelerate restoration.</li>
+        <li>Gained hands-on exposure to <strong>Ciena SLTE DWDM architecture</strong> — MOTR transponders, WSS wavelength routing, EDFA amplification, ROADM — in a live CLS production environment.</li>
+        <li>Performed optical fiber fusion splicing, cleaving, and ODF patching; documented <strong>±10kV submarine repeater power feeding procedures</strong> for operational compliance.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="tag">DWDM</span>
+        <span class="tag">Ciena SLTE</span>
+        <span class="tag">C-OTDR</span>
+        <span class="tag">NMS</span>
+        <span class="tag">OTN Alarms</span>
+        <span class="tag">Submarine Cables</span>
+        <span class="tag">ODF Splicing</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-item reveal">
+    <div class="exp-meta">
+      <div class="exp-period">Jul – Dec 2023</div>
+      <div class="exp-company">DRDO</div>
+      <div class="exp-location">Young Scientist Lab<br>Chennai, India</div>
+    </div>
+    <div class="exp-content">
+      <div class="exp-title">FPGA Engineering Intern</div>
+      <ul class="exp-bullets">
+        <li>Optimised FPGA real-time signal processing designs, improving system efficiency for <strong>defence-grade applications</strong> through structured validation and iterative root-cause analysis.</li>
+        <li>Conducted hardware-software integration testing across multiple validation cycles, reducing fault recurrence using systematic debugging methodology.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="tag">Xilinx Vivado</span>
+        <span class="tag">Vitis</span>
+        <span class="tag">FPGA</span>
+        <span class="tag">Verilog/VHDL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <h2 class="section-title">What I'm building.</h2>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div class="project-tag">Active · 2026</div>
+      <div class="project-name">MiniNet-IX</div>
+      <div class="project-desc">
+        A simulated internet backbone — BGP peering across 3 Autonomous Systems,
+        IXP simulation, route policy configuration, and fault injection.
+        Built to understand backbone infrastructure from the ground up.
+      </div>
+      <div class="project-stack">
+        <span>GNS3</span><span>BGP / eBGP</span><span>FRRouting</span>
+        <span>Wireshark</span><span>OSPF</span><span>Packet Tracer</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-tag">Published · ResearchGate</div>
+      <div class="project-name">Aqua Rover</div>
+      <div class="project-desc">
+        IoT-based water rover for real-time environmental monitoring,
+        integrating sensor automation for remote data collection and analysis.
+        Peer-reviewed publication on ResearchGate.
+      </div>
+      <div class="project-stack">
+        <span>IoT</span><span>Sensor Automation</span><span>Embedded Systems</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-tag">Assistive Tech</div>
+      <div class="project-name">Reading Eye for the Blind</div>
+      <div class="project-desc">
+        AI-powered assistive device using real-time OCR and computer vision
+        to convert printed text to audio for visually impaired users.
+      </div>
+      <div class="project-stack">
+        <span>Jetson Nano</span><span>OpenCV</span><span>Python</span><span>OCR</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-tag">Deep Learning</div>
+      <div class="project-name">Wood Detection System</div>
+      <div class="project-desc">
+        CNN-based deep learning classification pipeline for industrial wood
+        texture and pattern recognition, enabling automated quality control.
+      </div>
+      <div class="project-stack">
+        <span>Python</span><span>CNN</span><span>Deep Learning</span><span>Classification</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Blog -->
+<section id="blog">
+  <div class="section-label">Writing</div>
+  <h2 class="section-title">Backbone networking,<br>explained from the inside.</h2>
+
+  <div class="blog-featured reveal">
+    <div class="blog-date">March 11, 2026 · First Post</div>
+    <div class="blog-title">Last year, I walked into Airtel's Cable Landing Station in Chennai. I didn't fully understand what I was about to see.</div>
+    <div class="blog-excerpt">
+      Somewhere on the ocean floor, a cable thinner than a garden hose is carrying 95% of the world's intercontinental internet traffic — including the message you're reading right now. Every 60-80km along that cable, a repeater the size of a torpedo amplifies the signal. Powered by ±10,000 volts of constant current sent from the shore. Through thousands of kilometres of ocean.
+      <br><br>
+      Inside the station, I watched engineers read fault signals — AIS, BDI, LOS — the language cables use when something goes wrong. I saw DWDM systems multiplexing hundreds of wavelengths down a single fiber, each one carrying a different stream of data. I held the fiber itself. Thinner than a human hair.
+      <br><br>
+      I went in expecting to observe. I came out fascinated. That fascination is why I'm now building MiniNet-IX — a simulated internet backbone using GNS3, where I'm configuring BGP between 3 Autonomous Systems from scratch.
+    </div>
+    <a href="https://www.linkedin.com/in/ashrith-sriram-raju-nadimpalli-108116218/" target="_blank" class="blog-link">
+      Read full post on LinkedIn →
+    </a>
+  </div>
+
+  <div class="blog-soon reveal">
+    <div class="blog-soon-text">Next week: How DWDM multiplies internet capacity without laying new cables.</div>
+    <div class="blog-soon-label">Weekly Series</div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <div class="section-label">Technical Skills</div>
+  <h2 class="section-title">The stack.</h2>
+  <div class="skills-grid">
+    <div class="skill-group reveal">
+      <div class="skill-group-label">Networking</div>
+      <div class="skill-list">
+        <div class="skill-item">TCP/IP, BGP, OSPF, MPLS</div>
+        <div class="skill-item">VLANs, DHCP, Cisco IOS</div>
+        <div class="skill-item">GNS3, Packet Tracer</div>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-label">Optical & Submarine</div>
+      <div class="skill-list">
+        <div class="skill-item">DWDM, Ciena SLTE, MOTR</div>
+        <div class="skill-item">WSS, ROADM, EDFA</div>
+        <div class="skill-item">C-OTDR, ODF Splicing</div>
+        <div class="skill-item">SEA-ME-WE-4, i2i</div>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-label">Cloud & Monitoring</div>
+      <div class="skill-list">
+        <div class="skill-item">Oracle Cloud Infrastructure</div>
+        <div class="skill-item">AWS, Google Cloud Platform</div>
+        <div class="skill-item">NMS, SNMP, OTN Alarms</div>
+        <div class="skill-item">Linux</div>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-label">Programming</div>
+      <div class="skill-list">
+        <div class="skill-item">Python</div>
+        <div class="skill-item">MATLAB, Verilog/VHDL</div>
+        <div class="skill-item">Xilinx Vivado & Vitis</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="contact-availability">
+    <div class="contact-dot"></div>
+    Available for roles from June 2026
+  </div>
+  <h2 class="contact-title">Let's build<br><em>backbone infrastructure</em><br>together.</h2>
+  <p class="contact-sub">
+    Based in Singapore · M.S. EE graduating June 2026<br>
+    EP sponsorship required upon graduation
+  </p>
+  <div class="contact-links">
+    <a href="/cdn-cgi/l/email-protection#f587949f8094869dc6c4c4c2b59298949c99db969a98" class="btn-primary"><span class="__cf_email__" data-cfemail="9eecfff4ebffedf6adafafa9def9f3fff7f2b0fdf1f3">[email&#160;protected]</span></a>
+    <a href="https://linkedin.com/in/ashrith-nadimpalli" target="_blank" class="btn-secondary">LinkedIn</a>
+    <a href="https://github.com/ASHRITH31" target="_blank" class="btn-secondary">GitHub</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-left">© 2026 Ashrith Sriram Raju Nadimpalli</div>
+  <div class="footer-right">Built with HTML · Hosted on GitHub Pages</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        
