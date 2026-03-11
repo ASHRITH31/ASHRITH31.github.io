@@ -81,10 +81,10 @@ body {
 .cable:nth-child(4) { top: 85%; --dur: 8s; --delay: 1s; }
 
 @keyframes cable-pulse {
-  0% { opacity: 0; transform: translateX(-100%); }
+  0% { opacity: 1; transform: translateX(-100%); }
   30% { opacity: 1; }
   70% { opacity: 1; }
-  100% { opacity: 0; transform: translateX(100%); }
+  100% { opacity: 1; transform: translateX(100%); }
 }
 
 /* ── NAVIGATION ─────────────────────────────────────── */
@@ -148,8 +148,8 @@ nav {
   text-transform: uppercase;
   color: var(--pulse);
   margin-bottom: 24px;
-  opacity: 0;
-  animation: up 0.6s 0.1s ease forwards;
+  opacity: 1;
+  /*animation: up 0.6s 0.1s ease forwards;*/
   display: flex;
   align-items: center;
   gap: 14px;
@@ -169,8 +169,8 @@ nav {
   color: var(--white);
   line-height: 0.95;
   margin-bottom: 24px;
-  opacity: 0;
-  animation: up 0.6s 0.2s ease forwards;
+  opacity: 1;
+  /*animation: up 0.6s 0.2s ease forwards;*/
   letter-spacing: -2px;
 }
 
@@ -184,8 +184,8 @@ nav {
   font-size: clamp(1.1rem, 2.5vw, 1.5rem);
   color: var(--muted);
   margin-bottom: 48px;
-  opacity: 0;
-  animation: up 0.6s 0.3s ease forwards;
+  opacity: 1;
+  /*animation: up 0.6s 0.3s ease forwards;*/
   font-style: italic;
   max-width: 600px;
   line-height: 1.6;
@@ -195,8 +195,8 @@ nav {
   display: flex;
   gap: 0;
   margin-bottom: 56px;
-  opacity: 0;
-  animation: up 0.6s 0.4s ease forwards;
+  opacity: 1;
+  /*animation: up 0.6s 0.4s ease forwards;*/
   flex-wrap: wrap;
 }
 
@@ -229,8 +229,8 @@ nav {
 .hero-cta {
   display: flex;
   gap: 16px;
-  opacity: 0;
-  animation: up 0.6s 0.5s ease forwards;
+  opacity: 1;
+  /*animation: up 0.6s 0.5s ease forwards;*/
   flex-wrap: wrap;
 }
 
@@ -783,13 +783,13 @@ footer {
 
 /* ── ANIMATIONS ─────────────────────────────────────── */
 @keyframes up {
-  from { opacity: 0; transform: translateY(16px); }
+  from { opacity: 1; transform: translateY(0); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
@@ -1126,7 +1126,7 @@ footer {
   </p>
   <div class="contact-links">
     <a href="/cdn-cgi/l/email-protection#f587949f8094869dc6c4c4c2b59298949c99db969a98" class="btn-primary"><span class="__cf_email__" data-cfemail="9eecfff4ebffedf6adafafa9def9f3fff7f2b0fdf1f3">[email&#160;protected]</span></a>
-    <a href="https://linkedin.com/in/ashrith-nadimpalli" target="_blank" class="btn-secondary">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/ashrith-sriram-raju-nadimpalli-108116218/" target="_blank" class="btn-secondary">LinkedIn</a>
     <a href="https://github.com/ASHRITH31" target="_blank" class="btn-secondary">GitHub</a>
   </div>
 </section>
@@ -1143,4 +1143,3 @@ footer {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
-        
